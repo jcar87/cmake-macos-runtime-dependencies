@@ -2,6 +2,15 @@ cmake_minimum_required(VERSION 3.28)
 
 project(MyProject LANGUAGES C)
 
+include(GNUInstallDirs)
+if(APPLE)
+   set(base @loader_path)
+else()
+   set(base $ORIGIN)
+endif()
+
+set(CMAKE_INSTALL_RPATH ${base}/../${CMAKE_INSTALL_LIBDIR})
+
 set(ZLIB_ROOT "${CMAKE_SOURCE_DIR}/deps-install/zlib")
 set(PNG_ROOT "${CMAKE_SOURCE_DIR}/deps-install/libpng")
 
